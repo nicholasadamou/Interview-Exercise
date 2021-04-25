@@ -1,4 +1,4 @@
-# Interview Exercise
+# Interview Exercise [![Build Status](https://travis-ci.org/nicholasadamou/interview-exercise.svg?branch=master)](https://travis-ci.org/nicholasadamou/interview-exercise)
 
 This project was developed in accordance with the requirements laid out in [INTERVIEW_QUESTION.md](INTERVIEW_QUESTION.md).
 
