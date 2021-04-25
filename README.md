@@ -21,8 +21,8 @@ yarn build
 From this directory execute the following command:
 
 ```bash
-# This will build both docker containers
-# and will spin them both up in the background.
+# This will build each of the docker containers
+# and will spin them up in the background.
 yarn docker
 ```
 
