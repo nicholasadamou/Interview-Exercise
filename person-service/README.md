@@ -1,6 +1,6 @@
 # Person-Service
 
-A micro-service used to query a PostGRE database and expose RESTful API.
+A micro-service used to query a PostGRE database and expose a RESTful API.
 
 ## Running
 
