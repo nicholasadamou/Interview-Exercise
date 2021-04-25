@@ -46,7 +46,7 @@ docker-compose up
 
 ## API
 
-Visit `localhost:5000/api-docs` to view the API documentation.
+Visit `localhost:5445/api-docs` to view the API documentation.
 
 The API documentation UI was generated via [Swagger](https://swagger.io/).
 
