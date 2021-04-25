@@ -1,0 +1,51 @@
+{
+	"name": "front-end",
+	"description": "The front-end application that is used to display a elegant UI based on the requirements laid out in the interview question.",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@carbon/colors": "^10.1.1",
+		"@carbon/grid": "^10.1.1",
+		"@carbon/icons": "^10.1.0",
+		"@carbon/icons-react": "^10.1.1",
+		"@carbon/layout": "^10.1.1",
+		"@carbon/type": "^10.1.1",
+		"@material-ui/core": "^4.11.3",
+		"animate.css": "^4.1.1",
+		"axios": "^0.21.1",
+		"carbon-components": "^10.1.0",
+		"carbon-components-react": "^7.1.0",
+		"carbon-icons": "^7.0.7",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-winston": "^4.1.0",
+		"frameguard": "^4.0.0",
+		"helmet-csp": "^3.3.1",
+		"http-proxy-middleware": "^1.2.1",
+		"node-sass": "5.0.0",
+		"react": "17.0.1",
+		"react-dom": "17.0.1",
+		"react-router-dom": "^5.2.0",
+		"react-scripts": "4.0.3",
+		"styled-components": "^5.2.1",
+		"winston": "^3.3.3"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"prebuild": "react-scripts build",
+		"build": "node server",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"update": "npx yarn-check -u",
+		"clean": "rm -rf node_modules package-lock.json yarn.lock yarn-error.log"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	]
+}

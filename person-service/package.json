@@ -1,0 +1,27 @@
+{
+	"name": "person-service",
+	"version": "1.0.0",
+	"description": "A micro-service used to query a PostGRE database and expose RESTful API.",
+	"main": "src/server.js",
+	"scripts": {
+		"start": "node src/server.js",
+		"dev": "npx nodemon src/server.js",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"update": "npx yarn-check -u",
+		"clean": "rm -rf node_modules package-lock.json yarn.lock yarn-error.log"
+	},
+	"author": "Nicholas Adamou",
+	"license": "MIT",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-winston": "^4.1.0",
+		"node-fetch": "^2.6.1",
+		"pg": "^8.6.0",
+		"pg-pool": "^3.3.0",
+		"swagger-jsdoc": "^6.1.0",
+		"swagger-ui-express": "^4.1.6",
+		"winston": "^3.3.3"
+	}
+}

@@ -1,0 +1,16 @@
+version: "3.5"
+services:
+  service-relay:
+    image: nicholasadamou/person-service:latest
+    container_name: person-service
+    env_file:
+      - ./.env
+    build:
+      context: ./
+    ports:
+      - 5445:5445
+    networks:
+      - interview
+networks:
+  interview:
+    name: interview

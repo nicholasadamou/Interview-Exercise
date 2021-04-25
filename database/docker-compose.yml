@@ -1,0 +1,14 @@
+version: "3.5"
+services:
+  service-relay:
+    image: nicholasadamou/postgres:latest
+    container_name: postgres
+    env_file:
+      - ./.env
+    ports:
+      - 9999:5432
+    networks:
+      - interview
+networks:
+  interview:
+    external: true
