@@ -14,4 +14,3 @@ matrix:
     - os: linux
       dist: trusty
     - env: PROJECT=front-end/
-    - env: PROJECT=person-service/
