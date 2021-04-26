@@ -9,6 +9,7 @@ Create `.env` containing secrets:
 ```text
 API_SERVICE_HOST=
 API_SERVICE_PORT=
+REACT_APP_AUTHORIZATION_TOKEN=
 ```
 
 Install dependencies:

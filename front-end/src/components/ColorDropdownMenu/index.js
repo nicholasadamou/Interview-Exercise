@@ -30,6 +30,7 @@ const ColorDropdownMenu = (props) => {
 			</div>
 		) : (
 			<Dropdown
+				id="colorDropdownMenu"
 				items={colorOptions}
 				label="Color dropdown menu options"
 				titleText="Select a color:"

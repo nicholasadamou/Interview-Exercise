@@ -2,83 +2,82 @@
 import axios from 'axios';
 
 const PARAMS = ({ methodType = 'GET' }) => ({
-	method: methodType,
-	headers: {
-	  'Content-Type': 'application/json',
-	},
-  });
+    method: methodType,
+    headers: {
+        Authorization: process.env.REACT_APP_AUTHORIZATION_TOKEN,
+        'Content-Type': 'application/json',
+    },
+});
 
 export default {
-	getPeople: async () => {
-		const URL = `/api/person`;
+    getPeople: async () => {
+        const URL = `/api/person`;
 
-		let response = {};
+        let response = {};
 
-		try {
-			const { data } = await axios(URL,PARAMS({ methodType: 'GET' }));
+        try {
+            const { data } = await axios(URL, PARAMS({ methodType: 'GET' }));
 
-			response = data;
-		} catch (e) {
-			console.log(e.toString());
-		}
+            response = data;
+        } catch (e) {
+            console.log(e.toString());
+        }
 
-		return response;
-	},
-	getPeopleByColor: async (color) => {
-		const URL = `/api/person/getPeopleByColor?color=${color}`;
+        return response;
+    },
+    getPeopleByColor: async (color) => {
+        const URL = `/api/person/getPeopleByColor?color=${color}`;
 
-		let response = {};
+        let response = {};
 
-		try {
-			const { data } = await axios(URL,PARAMS({ methodType: 'GET' }));
+        try {
+            const { data } = await axios(URL, PARAMS({ methodType: 'GET' }));
 
-			response = data;
-		} catch (e) {
-			console.log(e.toString());
-		}
+            response = data;
+        } catch (e) {
+            console.log(e.toString());
+        }
 
-		return response;
-	},
-	getColorOptions: async () => {
-		const URL = `/api/person/colors`;
+        return response;
+    },
+    getColorOptions: async () => {
+        const URL = `/api/person/colors`;
 
-		let response = {};
+        let response = {};
 
-		try {
-			const { data } = await axios(URL,PARAMS({ methodType: 'GET' }));
+        try {
+            const { data } = await axios(URL, PARAMS({ methodType: 'GET' }));
 
-			response = data;
-		} catch (e) {
-			console.log(e.toString());
-		}
+            response = data;
+        } catch (e) {
+            console.log(e.toString());
+        }
 
-		return response;
-	},
-	addPerson: async (person) => {
-		const URL = `/api/person`;
+        return response;
+    },
+    addPerson: async (person) => {
+        const URL = `/api/person`;
 
-		let response = {};
+        let response = {};
 
-		try {
-			response = await axios(
-				URL,
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					data: person
-				}
-			);
+        try {
+            response = await axios(URL, {
+                method: 'POST',
+                headers: {
+					'Authorization': process.env.REACT_APP_AUTHORIZATION_TOKEN,
+                    'Content-Type': 'application/json',
+                },
+                data: person,
+            });
 
-			response = {
-				data: response.data,
-				status: response.status,
-			}
-		} catch (e) {
-			console.log(e.toString());
-		}
+            response = {
+                data: response.data,
+                status: response.status,
+            };
+        } catch (e) {
+            console.log(e.toString());
+        }
 
-		return response;
-	},
+        return response;
+    },
 };

@@ -15,6 +15,11 @@ Create `.env` containing secrets:
 ```text
 POSTGRES_URI=""
 
+AUTHORIZATION_TOKEN=
+
+SECRET=
+KEY=
+
 PORT=
 ```
 

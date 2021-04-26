@@ -9,14 +9,14 @@ const csp = require('helmet-csp');
 
 const routes = require('./routes');
 
-//////////////////////////////////////////////////
+//=====================================================
 // INITIALIZATION
 
 require('dotenv').config();
 
 const app = express();
 
-//////////////////////////////////////////////////
+//=====================================================
 // LOGGING
 
 const logger = winston.createLogger({})
@@ -32,7 +32,7 @@ app.use(expressWinston.logger({
 	)
 }));
 
-//////////////////////////////////////////////////
+//=====================================================
 // CONFIGURATION
 
 const PORT = process.env.PORT || 3000;
@@ -50,13 +50,11 @@ const proxyErrorHandler = (err, req, res) => {
     }
 }
 
-//////////////////////////////////////////////////
+//=====================================================
+// MIDDLEWARE
 
 app.use('/', express.static(path.join(__dirname, '..', 'build')))
 app.use('/dist', express.static(path.join(__dirname, '..', 'build')))
-
-//////////////////////////////////////////////////
-// MIDDLEWARE
 
 // The X-Frame-Options header tells browsers to prevent your web-page from being
 // put in an iframe. When browsers load iFrames, they’ll check the
@@ -97,7 +95,7 @@ app.use(
     }),
 )
 
-//////////////////////////////////////////////////
+//=====================================================
 
 const httpserver = http.createServer(app)
 httpserver.listen(PORT, () => logger.info(`Server Running on port ${PORT}`))
