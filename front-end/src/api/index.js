@@ -54,4 +54,31 @@ export default {
 
 		return response;
 	},
+	addPerson: async (person) => {
+		const URL = `/api/person`;
+
+		let response = {};
+
+		try {
+			response = await axios(
+				URL,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					data: person
+				}
+			);
+
+			response = {
+				data: response.data,
+				status: response.status,
+			}
+		} catch (e) {
+			console.log(e.toString());
+		}
+
+		return response;
+	},
 };

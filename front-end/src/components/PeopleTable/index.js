@@ -4,8 +4,6 @@ import { withRouter } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import NotificationContext from '../../contexts/NotificationContext';
-
 import TableContext from '../../contexts/TableContext';
 
 import { DataTable, DataTableSkeleton, Pagination } from 'carbon-components-react';
@@ -110,8 +108,6 @@ const PaginationBar = styled.div`
 `;
 
 const PeopleTable = (props) => {
-	const { showNotification } = React.useContext(NotificationContext);
-
 	const {
 		data,
 		page,
@@ -127,7 +123,7 @@ const PeopleTable = (props) => {
 	const pageSizes = [5, 10, 20, 50];
 
 	React.useEffect(() => {
-		getPeople(showNotification);
+		getPeople();
 	}, []);
 
 	return (

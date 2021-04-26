@@ -6,6 +6,10 @@ This project was developed in accordance with the requirements laid out in [INTE
 
 For simplicity sake, I have decided to package this project into a mono repo. This makes it easier to build and spin up each container quickly due to the use of `npm` scripts. However, each individual project is a docker container so, each project could be easily converted into a micro service architecture.
 
+## Issues
+
+Please refer to [ISSUES.md](ISSUES.md) regarding current problems and their fixes.
+
 ## Running
 
 From this directory build the project:

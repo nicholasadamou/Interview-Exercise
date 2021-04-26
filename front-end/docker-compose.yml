@@ -1,17 +1,17 @@
 version: '3.5'
 services:
   front-end:
-    image: nicholasadamou/front-end:latest
+    image: 'nicholasadamou/front-end:latest'
     container_name: front-end
     environment:
-      - API_SERVICE_HOST=localhost
-      - API_SERVICE_PORT=5445
+      - PERSON_SERVICE_HOST=person-service
+      - PERSON_SERVICE_PORT=5445
       - CHOKIDAR_USEPOLLING=true
     volumes:
       - '.:/opt/app'
-      - '/opt/app/node_modules'
+      - /opt/app/node_modules
     ports:
-      - 3001:3000
+      - '3001:3000'
     networks:
       - interview
 networks:

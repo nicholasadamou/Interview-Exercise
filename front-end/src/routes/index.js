@@ -12,14 +12,18 @@ import PeopleTable from '../components/PeopleTable';
 import ColorDropdownMenu from '../components/ColorDropdownMenu';
 import FilterButton from '../components/FilterButton';
 import ClearFilterButton from '../components/ClearFilterButton';
+import AddPersonButton from '../components/AddPersonButton';
+
+const ActionBarContainer = styled.div`
+	display: grid;
+	grid-template-columns: 3fr 0.5fr;
+`;
 
 const FilterContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	align-items: center;
+	align-items: flex-end;
 	justify-content: flex-start;
-
-	margin-bottom: 16px;
 
 	.bx--dropdown__wrapper {
 		width: 25%;
@@ -30,11 +34,14 @@ const FilterContainer = styled.div`
 const IndexPage = () => (
 	<Layout>
 		<TableProvider>
-			<FilterContainer>
-				<ColorDropdownMenu />
-				<FilterButton />
-				<ClearFilterButton />
-			</FilterContainer>
+			<ActionBarContainer>
+				<FilterContainer>
+					<ColorDropdownMenu />
+					<FilterButton />
+					<ClearFilterButton />
+				</FilterContainer>
+				<AddPersonButton />
+			</ActionBarContainer>
 			<PeopleTable />
 		</TableProvider>
 	</Layout>

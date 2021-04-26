@@ -4,6 +4,8 @@ import TableContext from '../contexts/TableContext';
 
 import API from '../api';
 
+import NotificationContext from '../contexts/NotificationContext';
+
 const TableProvider = (props) => {
 	// table properties
 	const [data, setData] = React.useState({});
@@ -13,8 +15,11 @@ const TableProvider = (props) => {
 	const [isLoading, setIsLoading] = React.useState(true);
 
 	// dropdown/button properties
-	const [selectedColor, setSelectedColor] = React.useState({});
+	const [colorOptions, setColorOptions] = React.useState([]);
+	const [selectedColor, setSelectedColor] = React.useState(null);
 	const [canFilter, setCanFilter] = React.useState(false);
+
+	const { showNotification } = React.useContext(NotificationContext);
 
 	const calculatePagination = data => {
 		const itemsAvailable = data.length;
@@ -63,7 +68,7 @@ const TableProvider = (props) => {
 		setData(subset);
 	}
 
-	const filterByColor = (showNotification) => {
+	const filterByColor = () => {
 		setIsLoading(true);
 
 		API.getPeopleByColor(selectedColor).then(response => {
@@ -84,7 +89,7 @@ const TableProvider = (props) => {
 		});
 	}
 
-	const getPeople = (showNotification) => {
+	const getPeople = () => {
 		setIsLoading(true);
 
 		API.getPeople().then(response => {
@@ -103,6 +108,49 @@ const TableProvider = (props) => {
 
 			setIsLoading(false);
 		});
+	}
+
+	const addPerson = (person) => {
+		setIsLoading(true);
+
+		API.addPerson(person).then(response => {
+			const { status } = response;
+
+			if (status !== 200) {
+				showNotification({
+					success: false,
+					kind: 'error',
+					subtitle: 'Unable to add a person.',
+					timeout: 5000
+				});
+			} else {
+				setSelectedColor(null);
+				setCanFilter(false);
+
+				getPeople();
+
+				getColorOptions();
+			}
+
+			setIsLoading(false);
+		})
+	}
+
+	const getColorOptions = () => {
+		API.getColorOptions().then(response => {
+			let data = response;
+
+			if (data === undefined) {
+				showNotification({
+					success: false,
+					kind: 'error',
+					subtitle: 'Unable to retrieve color options.',
+					timeout: 5000
+				});
+			} else {
+				setColorOptions(data);
+			}
+		})
 	}
 
 	return (
@@ -126,7 +174,11 @@ const TableProvider = (props) => {
 				canFilter,
 				setCanFilter,
 				filterByColor,
-				getPeople
+				getPeople,
+				addPerson,
+				colorOptions,
+				setColorOptions,
+				getColorOptions
 			}}
 		>
 			{props.children}

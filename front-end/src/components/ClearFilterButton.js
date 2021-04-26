@@ -10,7 +10,7 @@ const ClearFilterButton = (props) => {
 	const handleOnClick = () => {
 		getPeople();
 		setCanFilter(false);
-		setSelectedColor({});
+		setSelectedColor(null);
 	}
 
 	return (
