@@ -23,12 +23,6 @@ require('dotenv').config();
 const app = express();
 
 //=====================================================
-// MIDDLEWARE
-
-app.use(cors());
-app.use(express.json());
-
-//=====================================================
 // LOGGING
 
 const logger = winston.createLogger({})
@@ -49,6 +43,8 @@ app.use(expressWinston.logger({
 
 const HOST = process.env.HOST || "localhost";
 const PORT = process.env.PORT || 5445;
+const SECRET_KEY = `${process.env.KEY}:${process.env.SECRET}`;
+const SECRET = Buffer.from(SECRET_KEY).toString('base64');
 
 const options = {
 	definition: {
@@ -80,10 +76,26 @@ const options = {
 const specs = swaggerJsdoc(options);
 
 //=====================================================
+// MIDDLEWARE
 
-pool.on('connect', (client) => {
-	client.query('SET statement_timeout TO 3000');
-});
+const RequireAuth = (request, response, next) => {
+	try {
+		const token = request.headers.authorization;
+
+		jwt.verify(token, secret, { algorithms: ['HS256'] });
+	} catch (error) {
+		if (error.name.includes('Token')) {
+			response.redirect('/login')
+        } else {
+            response.status(500).send(error);
+        }
+	}
+
+	next();
+}
+
+app.use(cors());
+app.use(express.json());
 
 app.use(
 	"/api-docs",
@@ -91,18 +103,27 @@ app.use(
 	swaggerUi.setup(specs, { explorer: true })
 );
 
+app.use('/person', RequireAuth(), require('./routes/person'));
+
+//=====================================================
+
+pool.on('connect', (client) => {
+	client.query('SET statement_timeout TO 3000');
+});
+
 //=====================================================
 // RESTful API
 
 app.get('/', (request, response) => {
-	response.json({ info: 'Node.js, Express, and Postgres API' })
-});
 
-app.use('/person', require('./routes/person'));
+});
 
 app.listen(PORT, () => {
 	logger.info(`Server has started on port ${PORT}.`);
 });
+
+//=====================================================
+// READ INPUT FILE
 
 const people = parseInputFile(input);
 

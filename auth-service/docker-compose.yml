@@ -1,0 +1,16 @@
+version: "3.5"
+services:
+  service-relay:
+    image: nicholasadamou/auth-service:latest
+    container_name: auth-service
+    env_file:
+      - ./.env
+    build:
+      context: ./
+    ports:
+      - 8888:8888
+    networks:
+      - interview
+networks:
+  interview:
+    name: interview

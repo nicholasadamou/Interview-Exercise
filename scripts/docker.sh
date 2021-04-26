@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECTS=('database' 'person-service' 'front-end')
+PROJECTS=('auth-service' 'database' 'person-service' 'front-end')
 
 for project in "${PROJECTS[@]}"; do
 	cd "$project" && {

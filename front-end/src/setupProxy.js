@@ -11,4 +11,14 @@ module.exports = function(app) {
 			}
 		)
 	)
+	app.use(
+		createProxyMiddleware(
+			'/auth', {
+				target: 'http://localhost:8888',
+				pathRewrite: {
+					'^/auth': '/login'
+				}
+			}
+		)
+	)
 }
