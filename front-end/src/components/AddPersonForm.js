@@ -25,7 +25,10 @@ const AddPersonForm = (props) => {
 			setColor(value);
 		}
 
-		if (firstName !== null && color !== null) {
+		if (
+			(firstName !== "" && firstName !== null) &&
+			(color !== "" && color !== null)
+		) {
 			setCanAddPerson(true);
 		} else {
 			setCanAddPerson(false);
