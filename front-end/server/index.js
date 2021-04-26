@@ -6,6 +6,7 @@ const expressWinston = require('express-winston');
 const winston = require('winston');
 const frameguard = require('frameguard');
 const csp = require('helmet-csp');
+const jwt = require('jsonwebtoken');
 
 const routes = require('./routes');
 
@@ -41,17 +42,32 @@ app.set('port', PORT);
 const PERSON_SERVICE = `${process.env.PERSON_SERVICE_HOST}:${process.env.PERSON_SERVICE_PORT}`;
 logger.info(`API_SERVICE: ${PERSON_SERVICE}`);
 
-const proxyErrorHandler = (err, req, res) => {
-    switch (err && err.code) {
-        case 'ECONNRESET': return res.status(504).send('Time Out');
-        case 'ECONNREFUSED': return res.status(502).send();
-        case 'ENOTFOUND': return res.status(404).send();
-        default: return res.status(500).send('An unexpected error has occurred');
-    }
-}
+const SECRET_KEY = `${process.env.SECRET}:${process.env.KEY}`;
+const SECRET = Buffer.from(SECRET_KEY).toString("base64");
 
 //=====================================================
 // MIDDLEWARE
+
+const proxyErrorHandler = (error, request, response) => {
+	switch (error && error.code) {
+		case 'ECONNRESET': return response.status(504).send('Time Out');
+		case 'ECONNREFUSED': return response.status(502).send();
+		case 'ENOTFOUND': return response.status(404).send();
+		default: return response.status(500).send('An unexpected error has occurred');
+	}
+}
+
+const requireAuth = (request, response, next) => {
+	try {
+		const token = request.headers.authorization;
+
+		jwt.verify(token, SECRET, { algorithms: ["HS256"] });
+	} catch (error) {
+		response.status(401).send(error);
+	}
+
+	next();
+}
 
 app.use('/', express.static(path.join(__dirname, '..', 'build')))
 app.use('/dist', express.static(path.join(__dirname, '..', 'build')))
@@ -78,6 +94,7 @@ app.use('/', routes)
 
 app.use(
     '/api',
+	requireAuth,
     createProxyMiddleware({
         target: PERSON_SERVICE,
         changeOrigin: true,

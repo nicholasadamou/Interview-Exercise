@@ -4,9 +4,11 @@ services:
     image: 'nicholasadamou/front-end:latest'
     container_name: front-end
     environment:
-      - PERSON_SERVICE_HOST=person-service
+      - PERSON_SERVICE_HOST=http://person-service
       - PERSON_SERVICE_PORT=5445
       - REACT_APP_AUTHORIZATION_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFub255bW91cyIsImlhdCI6MTUxNjIzOTAyMn0.e7vpWWMR6De_L5dDbMea05oyyU55spYv54IfSrA2iFg
+      - SECRET=cFrJtt-b*7Dqxuh.rdZsPftmbvPKuMcE
+      - KEY=Ukg@itMecZePPUMm*77nggUB4hEQ-Ut4
     volumes:
       - '.:/opt/app'
       - /opt/app/node_modules
