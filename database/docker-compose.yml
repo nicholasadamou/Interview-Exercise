@@ -3,12 +3,15 @@ services:
   service-relay:
     image: nicholasadamou/postgres:latest
     container_name: postgres
-    env_file:
-      - ./.env
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=suopciqfzshiom
+      - POSTGRES_PASSWORD=b98fa5ce50149aa704f2914741d62ab39e5e3b4bd8d599133794bf8e0f0f377d
     ports:
       - 9999:5432
     networks:
       - interview
 networks:
   interview:
+    name: interview
     external: true

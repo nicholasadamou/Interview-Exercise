@@ -6,6 +6,8 @@ This project was developed in accordance with the requirements laid out in [INTE
 
 For simplicity sake, I have decided to package this project into a mono repo. This makes it easier to build and spin up each container quickly due to the use of `npm` scripts. However, each individual project is a docker container so, each project could be easily converted into a micro service architecture.
 
+Additionally, because this is just a demo project I have placed the environment related variables for the each docker container inside of the `docker-compose.yml` to make it easier for distribution and easier testing. If this were geared towards a production environment, I would place the secrets within a `.env` file or into an alternatively secure location.
+
 ## Issues
 
 Please refer to [ISSUES.md](ISSUES.md) regarding current problems and their fixes.

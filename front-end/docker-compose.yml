@@ -6,7 +6,7 @@ services:
     environment:
       - PERSON_SERVICE_HOST=person-service
       - PERSON_SERVICE_PORT=5445
-      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_AUTHORIZATION_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFub255bW91cyIsImlhdCI6MTUxNjIzOTAyMn0.e7vpWWMR6De_L5dDbMea05oyyU55spYv54IfSrA2iFg
     volumes:
       - '.:/opt/app'
       - /opt/app/node_modules
@@ -17,3 +17,4 @@ services:
 networks:
   interview:
     name: interview
+    external: true

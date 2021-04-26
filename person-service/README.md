@@ -13,14 +13,12 @@ yarn install
 Create `.env` containing secrets:
 
 ```text
-POSTGRES_URI=""
+POSTGRES_URI="postgres://<username>:<password>@localhost:9999/postgres"
 
 AUTHORIZATION_TOKEN=
 
 SECRET=
 KEY=
-
-PORT=
 ```
 
 Start the _development_ server:

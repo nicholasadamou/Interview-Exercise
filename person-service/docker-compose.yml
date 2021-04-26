@@ -3,8 +3,11 @@ services:
   service-relay:
     image: nicholasadamou/person-service:latest
     container_name: person-service
-    env_file:
-      - ./.env
+    environment:
+      - POSTGRES_URI=postgres://suopciqfzshiom:b98fa5ce50149aa704f2914741d62ab39e5e3b4bd8d599133794bf8e0f0f377d@postgres:5432/postgres
+      - AUTHORIZATION_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFub255bW91cyIsImlhdCI6MTUxNjIzOTAyMn0.e7vpWWMR6De_L5dDbMea05oyyU55spYv54IfSrA2iFg
+      - SECRET=cFrJtt-b*7Dqxuh.rdZsPftmbvPKuMcE
+      - KEY=Ukg@itMecZePPUMm*77nggUB4hEQ-Ut4
     build:
       context: ./
     ports:
@@ -14,3 +17,4 @@ services:
 networks:
   interview:
     name: interview
+    external: true

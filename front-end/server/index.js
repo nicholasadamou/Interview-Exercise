@@ -38,8 +38,8 @@ app.use(expressWinston.logger({
 const PORT = process.env.PORT || 3000;
 app.set('port', PORT);
 
-const API_SERVICE = `${process.env.API_SERVICE_HOST}:${process.env.API_SERVICE_PORT}`;
-logger.info(`API_SERVICE: ${API_SERVICE}`);
+const PERSON_SERVICE = `${process.env.PERSON_SERVICE_HOST}:${process.env.PERSON_SERVICE_PORT}`;
+logger.info(`API_SERVICE: ${PERSON_SERVICE}`);
 
 const proxyErrorHandler = (err, req, res) => {
     switch (err && err.code) {
@@ -79,7 +79,7 @@ app.use('/', routes)
 app.use(
     '/api',
     createProxyMiddleware({
-        target: API_SERVICE,
+        target: PERSON_SERVICE,
         changeOrigin: true,
         pathRewrite: {
             '^/api': '',
