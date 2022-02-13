@@ -7,7 +7,8 @@
 		"prebuild": "npx yarn clean && npx yarn install-dependencies",
 		"build": "npx yarn -C front-end build && npx yarn -C person-service build",
 		"clean": "npx yarn -C front-end clean && npx yarn -C person-service clean",
-		"docker": "bash scripts/docker.sh"
+		"docker": "bash scripts/docker.sh",
+		"docker:down": "cd front-end && docker-compose down && cd ../person-service && docker-compose down && cd ../database && docker-compose down && docker network remove test"
 	},
 	"author": "Nicholas Adamou",
 	"license": "MIT",
