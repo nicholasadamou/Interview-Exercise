@@ -36,7 +36,7 @@ Give it a few minutes to bring up the [front-end](/front-end) container. `webpac
 
 ## Development
 
-It is highly recommended that if you would like to develop this project further, you should navigate into each project directory's individually and run the development commands specified in their respective README's in seperate terminal sessions.
+It is highly recommended that if you would like to develop this project further, you should navigate into each project directory's individually and run the development commands specified in their respective README's in separate terminal sessions.
 
 I also highly recommend [WebStorm IDE](https://www.jetbrains.com/webstorm/) for developing any Node or React based application.
 
