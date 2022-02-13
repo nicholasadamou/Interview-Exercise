@@ -2,14 +2,27 @@
 
 PROJECTS=('database' 'person-service' 'front-end')
 
-docker network create "interview"
+NETWORK="interview"
 
-for project in "${PROJECTS[@]}"; do
-	cd "$project" && {
-		make all && docker-compose up -d
-		cd .. || exit
-	}
-done
+if [ "$1" != "down" ]; then
+	docker network create "$NETWORK"
+
+	for project in "${PROJECTS[@]}"; do
+		cd "$project" && {
+			make all && docker-compose up -d
+			cd .. || exit
+		}
+	done
+else
+	docker network remove "$NETWORK"
+
+	for project in "${PROJECTS[@]}"; do
+		cd "$project" && {
+			docker-compose down
+			cd .. || exit
+		}
+	done
+fi
 
 
 
